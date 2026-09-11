@@ -1,0 +1,13 @@
+<!doctype html>
+<html><head><title>Add Food Record</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><nav><b>🍎 FoodChain</b><span><a href="/">Home</a><a href="/verify">Verify</a></span></nav>
+<div class="container small"><h1>Add Food Supply-Chain Record</h1>
+<form method="post">
+<label>Product Name<input name="product" placeholder="Tomato" required></label>
+<label>Batch ID<input name="batch_id" placeholder="TOM-001" required></label>
+<label>Quantity<input name="quantity" placeholder="1000 kg"></label>
+<label>Location<input name="location" placeholder="Chennai Farm"></label>
+<label>Owner / Participant<input name="owner" placeholder="Farmer"></label>
+<label>Status<select name="status"><option>Harvested</option><option>Processed</option><option>In Transit</option><option>Received</option><option>Sold</option></select></label>
+<button type="submit">Add to Blockchain</button>
+</form></div></body></html>

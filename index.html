@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<title>FoodChain - Blockchain Supply Chain</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<nav><b>🍎 FoodChain</b><span><a href="/">Home</a><a href="/add">Add Record</a><a href="/verify">Verify</a></span></nav>
+<div class="container">
+<h1>Blockchain-Based Food Supply Chain</h1>
+<p>Track a food product from farmer to retailer using a tamper-evident hash chain.</p>
+<div class="card status {{ 'ok' if valid else 'bad' }}">
+Blockchain status: <b>{{ "VALID" if valid else "INVALID" }}</b>
+</div>
+<div class="actions"><a class="button" href="/add">+ Add Supply-Chain Record</a><a class="button secondary" href="/verify">Verify Blockchain</a></div>
+<h2>Supply Chain Records</h2>
+<table>
+<tr><th>Product</th><th>Batch ID</th><th>Quantity</th><th>Location</th><th>Owner</th><th>Status</th><th>Block Hash</th></tr>
+{% for p in products %}
+<tr><td>{{p.product}}</td><td>{{p.batch_id}}</td><td>{{p.quantity}}</td><td>{{p.location}}</td><td>{{p.owner}}</td><td>{{p.status}}</td><td class="hash">{{p.block_hash[:12]}}...</td></tr>
+{% else %}<tr><td colspan="7">No records yet. Add the first record.</td></tr>{% endfor %}
+</table>
+<h2>Blockchain</h2>
+{% for b in blocks %}
+<div class="block">
+<b>Block {{b.index}}</b> — {{b.timestamp}}<br>
+Data: {{b.data}}<br>
+Previous: <span class="hash">{{b.previous_hash}}</span><br>
+Hash: <span class="hash">{{b.hash}}</span>
+</div>
+{% endfor %}
+</div>
+</body></html>

@@ -1,0 +1,8 @@
+<!doctype html>
+<html><head><title>Verify Blockchain</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body><nav><b>🍎 FoodChain</b><span><a href="/">Home</a><a href="/add">Add Record</a></span></nav>
+<div class="container"><h1>Blockchain Verification</h1>
+<div class="card status {{ 'ok' if valid else 'bad' }}"><h2>{{ "✓ Blockchain is VALID" if valid else "✗ Blockchain is INVALID" }}</h2>
+<p>Every block is checked against its calculated hash and its previous block hash.</p></div>
+{% for b in blocks %}<div class="block"><b>Block {{b.index}}</b><br>Hash: <span class="hash">{{b.hash}}</span><br>Previous: <span class="hash">{{b.previous_hash}}</span></div>{% endfor %}
+</div></body></html>
